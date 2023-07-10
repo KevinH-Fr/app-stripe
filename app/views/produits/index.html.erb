@@ -1,0 +1,48 @@
+<h1>Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Stripe produit id </th>
+      <th>PAYMENT </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @produits.each do |produit| %>
+      <tr>
+        <td><%= produit.name %></td>
+        <td><%= produit.price %></td>
+        <td><%= produit.stripe_product_id %> </td>
+
+        <td>
+          <div data-turbo='false'>
+            <%= button_to  "buy", checkout_create_path, params: {id: produit.id}, 
+                remote: true %>
+          </div>
+        </td>
+
+          <%#     <script async
+            src="https://js.stripe.com/v3/buy-button.js">
+          </script>
+
+          <stripe-buy-button
+            buy-button-id="buy_btn_1NQDhbAGIT8oyD131n3GjxJV"
+            publishable-key="pk_test_51NQ9QgAGIT8oyD13cprHZ6cKE2V6icF91VwQt9Fu03t11Qm5zuHYLCfSJ3Xcqn3lb42dOO4pBtNt8l6spwxEdWig00GkpddC2c"
+          >
+          </stripe-buy-button> %>
+
+        <td><%= link_to 'Show', produit %></td>
+        <td><%= link_to 'edit', edit_produit_path(produit) %></td>        
+        <td><%= link_to 'Destroy', produit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_produit_path %>
+<hr>

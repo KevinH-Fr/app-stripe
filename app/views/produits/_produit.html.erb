@@ -1,0 +1,21 @@
+<div id="<%= dom_id produit %>">
+  <p>
+    <strong>Name:</strong>
+    <%= produit.name %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= produit.price %>
+  </p>
+
+
+    <div data-turbo='false'>
+      <%= button_to  "buy", checkout_create_path, params: {id: produit.id}, 
+          remote: true %>
+    </div>
+
+  </div>
+
+</div>
+
