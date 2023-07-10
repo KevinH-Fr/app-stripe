@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   resources :produits
 
  # resources :checkout, only:[:create]
@@ -10,4 +11,6 @@ Rails.application.routes.draw do
  # get "cancel", to: "checkout#cancel"
 
  # root "produits#index"
+
+ root "home#index"
 end
