@@ -13,6 +13,8 @@
   </thead>
 
   <tbody>
+
+  <% if @produits.present? %>
     <% @produits.each do |produit| %>
       <tr>
         <td><%= produit.name %></td>
@@ -34,6 +36,7 @@
         <td><%= link_to 'Destroy', produit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+  <% end %>
   </tbody>
 </table>
 
