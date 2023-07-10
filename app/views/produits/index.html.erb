@@ -19,14 +19,14 @@
       <tr>
         <td><%= produit.name %></td>
         <td><%= number_to_currency(produit.price/100) %></td>
-        <td><%#= produit.sales_count %> </td>
-        <td><%#= produit.stripe_product_id %> </td>
-        <td><%#= produit.stripe_price_id %> </td>
+        <td><%= produit.sales_count %> </td>
+        <td><%= produit.stripe_product_id %> </td>
+        <td><%= produit.stripe_price_id %> </td>
 
 
         <td>
           <div data-turbo='false'>
-            <%#= button_to  "buy", checkout_create_path, params: {id: produit.id}, 
+            <%= button_to  "buy", checkout_create_path, params: {id: produit.id}, 
                 remote: true %>
           </div>
         </td>
