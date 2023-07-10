@@ -5,6 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Price</th>
+      <th>sales count</th>
       <th>Stripe produit id </th>
       <th>Stripe price id </th>
       <th>PAYMENT </th>
@@ -15,7 +16,8 @@
     <% @produits.each do |produit| %>
       <tr>
         <td><%= produit.name %></td>
-        <td><%= produit.price %></td>
+        <td><%= number_to_currency(produit.price/100) %></td>
+        <td><%= produit.sales_count %> </td>
         <td><%= produit.stripe_product_id %> </td>
         <td><%= produit.stripe_price_id %> </td>
 
@@ -26,16 +28,6 @@
                 remote: true %>
           </div>
         </td>
-
-          <%#     <script async
-            src="https://js.stripe.com/v3/buy-button.js">
-          </script>
-
-          <stripe-buy-button
-            buy-button-id="buy_btn_1NQDhbAGIT8oyD131n3GjxJV"
-            publishable-key="pk_test_51NQ9QgAGIT8oyD13cprHZ6cKE2V6icF91VwQt9Fu03t11Qm5zuHYLCfSJ3Xcqn3lb42dOO4pBtNt8l6spwxEdWig00GkpddC2c"
-          >
-          </stripe-buy-button> %>
 
         <td><%= link_to 'Show', produit %></td>
         <td><%= link_to 'edit', edit_produit_path(produit) %></td>        
