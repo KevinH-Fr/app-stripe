@@ -1,5 +1,5 @@
 class ProduitsController < ApplicationController
-  before_action :set_produit, only: %i[ show edit update destroy create_checkout_session ]
+  before_action :set_produit, only: %i[ show edit update destroy  ] #create_checkout_session
 
   # GET /produits or /produits.json
   def index
@@ -57,19 +57,19 @@ class ProduitsController < ApplicationController
     end
   end
 
-  def create_checkout_session 
-    session = Stripe::Checkout::Session.create({
-      line_items: [{
-        price: 'price_1NQBM4AGIT8oyD13qP5IVsxd',
-        quantity: 1,
-      }],
-      mode: 'payment',
-      success_url: 'https://example.com/success',  # Replace with your actual success URL
-      cancel_url: 'https://example.com/cancel',    # Replace with your actual cancel URL
-      })
+ # def create_checkout_session 
+ #   session = Stripe::Checkout::Session.create({
+ #     line_items: [{
+ #       price: 'price_1NQBM4AGIT8oyD13qP5IVsxd',
+ #       quantity: 1,
+ #     }],
+ #     mode: 'payment',
+ #     success_url: 'https://example.com/success',  # Replace with your actual success URL
+ #     cancel_url: 'https://example.com/cancel',    # Replace with your actual cancel URL
+ #     })
 
-      redirect_to session.url, allow_other_host: true, status: 303
-  end
+ #     redirect_to session.url, allow_other_host: true, status: 303
+ # end
 
 
   private
