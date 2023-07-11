@@ -13,14 +13,6 @@
 
   <body>
     <%= link_to "produits", produits_path%>
-
-    <hr>
-      <h1>shopping cart </h1>
-      <% @cart.each do |product| %>
-        <%= product.name %>
-        <br>
-      <% end %>
-    <hr>
     
     <%= yield %>
   </body>

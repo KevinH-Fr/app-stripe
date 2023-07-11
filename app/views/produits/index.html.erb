@@ -19,18 +19,10 @@
     <% @produits.each do |produit| %>
       <tr>
         <td><%= produit.name %></td>
-        <td><%= number_to_currency(produit.price/100) %></td>
+        <td><%= number_to_currency(produit.price_cent) %></td>
         <td><%= produit.sales_count %> </td>
         <td><%=  truncate( produit.stripe_product_id, :length => 10)  %> </td>
         <td><%=  truncate( produit.stripe_price_id, :length => 10) %> </td>
-
-        <td>
-          <% if @cart.include?(produit) %>
-            <%= button_to "Remove from cart", remove_from_cart_path(produit), method: :delete %>
-          <% else %>
-            <%= button_to "Add to cart", add_to_cart_path(produit) %>
-          <% end %>
-        </td>
 
         <td>
           <div data-turbo='false'>

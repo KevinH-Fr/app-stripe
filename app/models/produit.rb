@@ -1,6 +1,7 @@
 class Produit < ApplicationRecord
     validates :name, :price, presence: true
 
+    monetize :price, as: :price_cent
     def to_s
         name
     end

@@ -59,3 +59,5 @@ group :test do
 end
 
 gem "stripe"
+
+gem "money-rails"

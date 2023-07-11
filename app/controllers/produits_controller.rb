@@ -57,18 +57,6 @@ class ProduitsController < ApplicationController
     end
   end
 
-  def add_to_cart
-    id = params[:id].to_i
-    session[:cart] << id unless session[:cart].include?(id)
-    redirect_to produits_path
-  end
-
-  def remove_from_cart
-    id = params[:id].to_i
-    session[:cart].delete(id)
-    redirect_to produits_path
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -78,6 +66,6 @@ class ProduitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def produit_params
-      params.require(:produit).permit(:name, :price)
+      params.require(:produit).permit(:name, :price, :price_cent)
     end
 end
