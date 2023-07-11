@@ -227,7 +227,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
-  money-rails
+  money-rails (~> 1.12)
   pg (~> 1.4, >= 1.4.1)
   puma (~> 5.0)
   rails (~> 7.0.5)
