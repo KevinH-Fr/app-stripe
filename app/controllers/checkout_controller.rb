@@ -1,21 +1,39 @@
 class CheckoutController < ApplicationController
-  def create      
-        
-    product = Produit.find(params[:id])
-    
+
+def create
+  product = Produit.find(params[:id])
+  
+  if params[:payment_mode] == 'subscription'
     session = Stripe::Checkout::Session.create({
-      line_items: [{
-        price: product.stripe_price_id,
-        quantity: 1,
-      }],
+      mode: 'subscription',
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: product.stripe_subscription_price_id,
+          quantity: 1,
+        }
+      ],
+      success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: cancel_url,
+    })
+  else
+    session = Stripe::Checkout::Session.create({
       mode: 'payment',
-      success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}", 
-      cancel_url: cancel_url,   
-      })
-
-    redirect_to session.url, allow_other_host: true, status: 303
-
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: product.stripe_price_id,
+          quantity: 1,
+        }
+      ],
+      success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: cancel_url,
+    })
   end
+
+  redirect_to session.url, allow_other_host: true, status: 303
+end
+  
 
   def success
     @session_with_expand = Stripe::Checkout::Session

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'home/index'
   resources :produits
 
@@ -14,8 +15,8 @@ Rails.application.routes.draw do
 
   root "produits#index"
 
-  post "produits/add_to_cart/:id", to: "produits#add_to_cart", as: "add_to_cart"
-  delete "produits/remove_from_cart/:id", to: "produits#remove_from_cart", as: "remove_from_cart"
+  #post "produits/add_to_cart/:id", to: "produits#add_to_cart", as: "add_to_cart"
+  #delete "produits/remove_from_cart/:id", to: "produits#remove_from_cart", as: "remove_from_cart"
 
 
 end

@@ -10,6 +10,7 @@
       <th>Stripe price id </th>
       <th>Shopping cart </th>
       <th>PAYMENT </th>
+      <th>subscription</th>
     </tr>
   </thead>
 
@@ -26,8 +27,19 @@
 
         <td>
           <div data-turbo='false'>
-            <%= button_to  "buy", checkout_create_path, params: {id: produit.id}, 
-                remote: true %>
+            <%= button_to  "buy", checkout_create_path, params: {
+              id: produit.id,
+              payment_mode: 'payment'
+              }, remote: true %>
+          </div>
+        </td>
+
+        <td>
+          <div data-turbo='false'>
+            <%= button_to "Subscribe", checkout_create_path, params: {
+              id: produit.id,
+              payment_mode: 'subscription'
+            }, remote: true %>
           </div>
         </td>
 

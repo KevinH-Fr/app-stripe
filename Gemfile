@@ -61,3 +61,4 @@ end
 gem "stripe"
 
 gem 'money-rails', '~> 1.12'
+gem "devise", "~> 4.9"
