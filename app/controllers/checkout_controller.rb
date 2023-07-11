@@ -9,12 +9,18 @@ class CheckoutController < ApplicationController
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: root_url + "?session_id={CHECKOUT_SESSION_ID}", 
-      cancel_url: root_url,   
+      success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}", 
+      cancel_url: cancel_url,   
       })
-
 
      redirect_to session.url, allow_other_host: true, status: 303
 
   end
+
+  def success
+  end
+
+  def cancel
+  end
+
 end
