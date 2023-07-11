@@ -8,6 +8,7 @@
       <th>sales count</th>
       <th>Stripe produit id </th>
       <th>Stripe price id </th>
+      <th>Shopping cart </th>
       <th>PAYMENT </th>
     </tr>
   </thead>
@@ -22,6 +23,14 @@
         <td><%= produit.sales_count %> </td>
         <td><%=  truncate( produit.stripe_product_id, :length => 10)  %> </td>
         <td><%=  truncate( produit.stripe_price_id, :length => 10) %> </td>
+
+        <td>
+          <% if @cart.include?(produit) %>
+            <%= button_to "Remove from cart", remove_from_cart_path(produit), method: :delete %>
+          <% else %>
+            <%= button_to "Add to cart", add_to_cart_path(produit) %>
+          <% end %>
+        </td>
 
         <td>
           <div data-turbo='false'>
