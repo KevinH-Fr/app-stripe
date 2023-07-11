@@ -20,8 +20,8 @@
         <td><%= produit.name %></td>
         <td><%= number_to_currency(produit.price/100) %></td>
         <td><%= produit.sales_count %> </td>
-        <td><%= produit.stripe_product_id %> </td>
-        <td><%= produit.stripe_price_id %> </td>
+        <td><%=  truncate( produit.stripe_product_id, :length => 10)  %> </td>
+        <td><%=  truncate( produit.stripe_price_id, :length => 10) %> </td>
 
         <td>
           <div data-turbo='false'>
@@ -43,3 +43,25 @@
 
 <%= link_to 'New Product', new_produit_path %>
 <hr>
+
+
+<% if params[:session_id].present? %>
+
+  <% @session = Stripe::Checkout::Session
+      .retrieve(params[:session_id]) %>
+
+  <%= @session.payment_status %>
+      
+  <% @session.payment_intent %>
+  <% Stripe::PaymentIntent.retrieve(@session.payment_intent) %>
+
+  <% @session_with_expand = Stripe::Checkout::Session
+      .retrieve({ id: params[:session_id], 
+      expand: ["payment_intent", "line_items"] }) %>
+
+  <% @session_with_expand.line_items.data.each do |line_item| %>
+    <%= line_item.price.id %>
+    <%= line_item.price.product %>
+  <% end %>
+
+<% end %>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "success", to: "checkout#success"
   get "cancel", to: "checkout#cancel"
 
- # root "produits#index"
+  root "produits#index"
 
- root "home#index"
+ #root "home#index"
 end
