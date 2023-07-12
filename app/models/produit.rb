@@ -46,5 +46,34 @@ class Produit < ApplicationRecord
 
         update(stripe_price_id: one_time_price.id, stripe_subscription_price_id: subscription_price.id )
     end
+
+
+
+    # tests sur subscriptions pour check si customer has one 
+
+    def check_subscription(customer_id, product_id)
+        subscriptions = Stripe::Subscription.list
+      
+        subscriptions_for_customer = subscriptions.select do |subscription|
+          subscription.customer == customer_id && subscription.plan.product == product_id
+        end
+      
+        if subscriptions_for_customer.present?
+          valid_subscriptions = subscriptions_for_customer.select { |subscription| subscription_valid?(subscription) }
+          valid_subscriptions.present?
+        else
+          false
+        end
+      end
+      
+      def subscription_valid?(subscription)
+        return false unless subscription.status == 'active'
+      
+        invoice = Stripe::Invoice.retrieve(subscription.latest_invoice)
+        return false unless invoice.status == 'paid'
+      
+        subscription.current_period_end > Time.now.to_i
+      end
+      
     
 end

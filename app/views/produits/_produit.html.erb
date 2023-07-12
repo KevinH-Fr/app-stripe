@@ -15,6 +15,27 @@
           remote: true %>
     </div>
 
+
+    <div>
+
+      <% customer_id = 'cus_OFGtmZr1mTS2aA' %> 
+      <%# à remplacer par id dynamqiue
+      id stripe du current user 
+       %>
+      
+      <% product_id = produit.stripe_product_id %>
+
+      <% has_subscription = produit.check_subscription(customer_id, product_id) %>
+
+      <% if has_subscription %>
+        <p>The customer has a subscription for the product.</p>
+      <% else %>
+        <p>The customer does not have a subscription for the product.</p>
+      <% end %>
+
+        
+    </div>
+
   </div>
 
 </div>

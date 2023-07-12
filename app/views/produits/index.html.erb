@@ -55,22 +55,4 @@
 <br>
 
 <%= link_to 'New Product', new_produit_path %>
-<hr>
 
-
-<hr>
-test status abonnement user: 
-<br>
-continuer pour trouver si ce customer est abonné à ce produit
-
-<br>
-<br>
-
-<% customer_id = 'cus_OFGtmZr1mTS2aA' %>
-<% customer = Stripe::Customer.retrieve(customer_id) %>
-
-<% product_id = 'prod_OFGs7FU371njez' %>
-<% product = Stripe::Product.retrieve(product_id) %>
-
-
-<hr>
